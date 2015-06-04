@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-function addLink() {
+var addLink = function() {
   chrome.tabs.query({
     active: true,
     currentWindow: true
