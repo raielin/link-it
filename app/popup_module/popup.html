@@ -2,20 +2,48 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <script src="jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="popup.css">
   </head>
-  <body>
+  <body ng-app="linkIT">
 
-    <div>
-      <h2>link-IT!</h2>
-      <table id="links">
-        <tr>
-          <td>Sorry! No valid links on this page.</td>
-        </tr>
-      </table>
-      <button id="button">OK!</button>
+    <div id="main_wrapper" ng-controller="PopupController">
+      <header>
+        <h1>link-IT!</h1>
+      </header>
+
+      <section id="links">
+        <ul>
+          <!-- Use `track by` expression to specify unique keys. Fixes ngRepeat:dupes error. https://docs.angularjs.org/error/ngRepeat/dupes -->
+          <li ng-repeat="link in links track by $index">
+            <div class="actions">
+              <span class="remove" ng-click="removeLink(link.url)">X</span>
+            </div>
+            <a target="_blank" ng-href="{{link.url}}">{{link.title}}</a>
+          </li>
+        </ul>
+      </section>
+
+      <button id="showLinksModal">Add new link...</button>
     </div>
 
+    <dialog id="linksModal">
+      <div>
+        <ul id="linksList">
+          <li><input type="checkbox" id="check1" value="false"> Sorry! No first link on this page.</li>
+          <li><input type="checkbox" id="check1" value="false"> Sorry! No second link on this page.</li>
+          <li><input type="checkbox" id="check1" value="false"> Sorry! No third link on this page.</li>
+        </ul>
+      </div>
+      <button id="closeModal">linkIT!</button>
+    </dialog>
+
+    <script src="/bower_components/jquery/jquery.min.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+
     <script src="popup.js"></script>
+    <script src="popup.controller.js"></script>
+    <script src="/storage_module/storage.js"></script>
+    <script src="/storage_module/storage.service.js"></script>
+
   </body>
 </html>
