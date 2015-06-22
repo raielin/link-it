@@ -1,6 +1,10 @@
 {
   "name": "link-it",
   "version": "0.2.0",
-  "dependencies": {},
+  "dependencies": {
+    "angular": "1.2.6",
+    "jquery": "2.0.3",
+    "normalize.scss": "3.0.0"
+    },
   "devDependencies": {}
 }
